@@ -7,14 +7,14 @@ return new class extends Migration {
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('role_id')->default('user'); // Default role is 'user'
+            $table->unsignedBigInteger('role_id')->after('password'); // Default role is 'user'
         });
     }
 
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('role');
+            $table->dropColumn('role_id');
         });
     }
 };
