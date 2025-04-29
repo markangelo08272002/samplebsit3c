@@ -52,16 +52,19 @@
   <!-- Sidebar -->
   <div class="sidebar">
     <h4 class="text-center">Admin Panel</h4>
-    <a href="{{ route('admin.dashboard') }}" class="{{ request()->is('admin/dashboard') ? 'active' : '' }}">Dashboard</a>
-
-    <a href="{{ route('admin.users.index') }}" class="{{ request()->is('admin/users*') ? 'active' : '' }}">Users</a>
-
+    <a href="{{ route('admin.home') }}" class="{{ request()->is('admin') ? 'active' : '' }}">Dashboard</a>
   </div>
 
   <!-- Top Navbar -->
   <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-    <div class="container-fluid">
+    <div class="container-fluid d-flex justify-content-between">
       <span class="navbar-brand">Welcome, Admin</span>
+
+      <!-- Logout Form -->
+      <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <button type="submit" class="btn btn-outline-danger btn-sm">Logout</button>
+      </form>
     </div>
   </nav>
 

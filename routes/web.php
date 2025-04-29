@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use app\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LoginController; // Capital "A" in App
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
-
+use App\Http\Controllers\Admin\HomeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -12,11 +12,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
-Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
-    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+// Admin Routes
+Route::prefix('admin')->middleware('admin')->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('admin.home');
 });
+
+//user routes
+// Route::prefix('user')->name('user')->group(function () {
+//     Route::get('/home', [UserController::class, 'index'])->name('home');
+// });
