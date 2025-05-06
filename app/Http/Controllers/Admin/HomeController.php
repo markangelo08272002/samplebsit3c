@@ -29,7 +29,36 @@ class HomeController extends Controller
      */
     public function users()
     {
-        // Return the admin users view
-        return view('admin.user');
+        $users = \App\Models\User::paginate(10); // or ->all() if no pagination needed
+        return view('admin.user', compact('users'));
+    }
+
+     public function edit($id)
+    {
+        $user = User::findOrFail($id);
+        return view('admin.user_edit', compact('user'));
+    }
+
+    // Update user
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+        ]);
+
+        $user = User::findOrFail($id);
+        $user->update($request->only('name', 'email'));
+
+        return redirect()->route('admin.users')->with('success', 'User updated successfully!');
+    }
+
+    // Delete user
+    public function destroy($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('admin.users')->with('success', 'User deleted successfully!');
     }
 }

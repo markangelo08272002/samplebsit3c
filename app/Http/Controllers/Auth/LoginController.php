@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Models\Role;
 use App\Http\Middleware\ifAdmin;
@@ -38,13 +40,5 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
         $this->middleware('auth')->only('logout');
-    }
-    protected function authenticated(Request $request, $user)
-    {
-        if ($user->role === 'admin') {
-            return redirect('/admin/dashboard'); // Redirect admin to admin dashboard
-        } else {
-            return redirect('/user/home'); // Redirect regular users to user dashboard
-        }
     }
 }

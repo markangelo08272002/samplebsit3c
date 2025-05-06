@@ -53,6 +53,7 @@
   <div class="sidebar">
     <h4 class="text-center">Admin Panel</h4>
     <a href="{{ route('admin.home') }}" class="{{ request()->is('admin') ? 'active' : '' }}">Dashboard</a>
+    <a href="{{ route('admin.users') }}">Manage Users</a>
   </div>
 
   <!-- Top Navbar -->

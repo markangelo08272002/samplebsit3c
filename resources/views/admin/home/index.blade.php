@@ -11,7 +11,11 @@
         <div class="card text-white bg-primary">
           <div class="card-body">
             <h5 class="card-title">Total Users</h5>
-            <p class="card-text display-4">120</p>
+            @if(App\Models\User::count() > 0)
+                <p class="card-text display-4">{{ App\Models\User::count() }}</p>
+            @else
+                <p class="card-text display-4 text-muted">No users found</p>
+            @endif
           </div>
         </div>
       </div>

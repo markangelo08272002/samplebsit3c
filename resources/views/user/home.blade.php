@@ -10,7 +10,7 @@
     <div class="card text-white bg-primary mb-3">
       <div class="card-body">
         <h5 class="card-title">Total Posts</h5>
-        <p class="display-6">34</p>
+        <p class="display-6"></p>
       </div>
     </div>
   </div>

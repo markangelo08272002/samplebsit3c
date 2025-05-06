@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use App\Models\Role;
 use Auth;
 
-class ifAdmin
+class ifUser
 {
     /**
      * Handle an incoming request.
